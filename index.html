@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(270deg, #ffb6c1, #ffd6e8, #c1f0ff);
+    background-size: 600% 600%;
+    animation: bgMove 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes bgMove {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.story {
+    width: 100vw;
+    max-width: 420px;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* FOTO */
+.photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    margin-top: 60px;
+    animation: zoomIn 1.5s ease forwards;
+}
+
+@keyframes zoomIn {
+    from {opacity:0; transform: scale(0)}
+    to {opacity:1; transform: scale(1)}
+}
+
+h1 {
+    margin-top: 25px;
+    font-size: 30px;
+    opacity: 0;
+    animation: fadeUp 1.5s ease forwards;
+    animation-delay: 1.2s;
+}
+
+h2 {
+    font-size: 22px;
+    opacity: 0;
+    animation: fadeUp 1.5s ease forwards;
+    animation-delay: 1.8s;
+}
+
+@keyframes fadeUp {
+    from {opacity:0; transform: translateY(20px)}
+    to {opacity:1; transform: translateY(0)}
+}
+
+.message {
+    font-size: 16px;
+    margin-top: 25px;
+    opacity: 0;
+    animation: fadeUp 2s ease forwards;
+    animation-delay: 2.5s;
+}
+
+/* KUE */
+.cake {
+    font-size: 60px;
+    margin-top: 30px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+/* CONFETTI */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    animation: fall 4s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* TAP INFO */
+.tap {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    font-size: 14px;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO (AMAN) -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="story">
+    <img src="foto.jpg" class="photo">
+
+    <h1>🎉 Happy Birthday 🎉</h1>
+    <h2>Salfina Ade Barekk 💖</h2>
+
+    <div class="message">
+        Semoga adalah pokoknya ✨
+    </div>
+
+    <div class="cake">🎂</div>
+</div>
+
+<div class="tap">👆 Tap layar untuk musik</div>
+
+<script>
+// MUSIK PLAY SETELAH TAP
+document.body.addEventListener('click', function () {
+    document.getElementById('music').play();
+    document.querySelector('.tap').style.display = 'none';
+}, { once: true });
+
+// CONFETTI AUTO
+setInterval(() => {
+    for(let i=0;i<15;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"vw";
+        c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),4000);
+    }
+}, 2000);
+</script>
+
+</body>
+</html>
